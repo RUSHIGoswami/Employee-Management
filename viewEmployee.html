@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Employee</title>
+</head>
+
+<body>
+  <!-- Heading -->
+  <h1>View all the employees</h1>
+
+  <!-- View employee table -->
+  <table border="1">
+    <!-- Table headings -->
+    <thead>
+      <th>Employee Id</th>
+      <th>Employee name</th>
+      <th>Employee designation</th>
+      <th>Employee address</th>
+      <th>edit</th>
+
+    </thead>
+    <!-- Table data -->
+    <tbody id="dataRows">
+    </tbody>
+  </table>
+
+  <!-- Hyperlink for add employee -->
+  <a href="addEmployee.html">Add Employees</a>
+
+
+  <!-- Script for displaying the employess -->
+  <script>
+    let empArr = [];
+    // Using for loop to access all the data from localStorage
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        let obj = JSON.parse(localStorage.getItem(key))
+        empArr.push(obj);
+      }
+
+      // Writing data to table body with template literals.
+    let tableRows = document.getElementById("dataRows");
+    empArr.forEach((value) => {
+      tableRows.innerHTML += `
+    <tr>
+      <td>${value.id}</td>
+      <td>${value.name}</td>
+      <td>${value.designation}</td>
+      <td>${value.address}</td>
+      <td><a href="editEmployee.html?${value.id}">Edit</a></td>
+    </tr>
+    `;
+    });
+  </script>
+</body>
+
+</html>

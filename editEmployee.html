@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Employee</title>
+  <!-- Linking script with type module for import/export and using defer to run after DOM rendering -->
+  <script src="editForm.js" type="module" defer></script>
+</head>
+<body>
+
+  <!-- Edit employee details form -->
+  <form action="" id="editForm">
+
+    <!-- Employee id -->
+    <label for="employeeId">Employee id: </label><br>
+    <input type="text" name="employeeId" id="employeeId" value="" placeholder="enter employee Id" disabled /><br><br>
+    
+    <!-- Employee name -->
+    <label for="employeeName">Employee Name: </label><br>
+    <input type="text" name="employeeName" id="employeeName" placeholder="enter employee name" required /><br><br>
+    
+    <!-- Employee designation -->
+    <label for="employeeDesignation">Employee designation: </label><br>
+    <input type="text" name="employeeDesignation" id="employeeDesignation" placeholder="enter employee designation" required /><br><br>
+    
+    <!-- Employee address -->
+    <label for="address">Employee address: </label><br>
+    <textarea name="address" id="employeeAddress" cols="25" rows="5" style="resize: none;" placeholder="enter address of employee" required ></textarea><br><br>
+    
+    <!-- submit button -->
+    <input type="submit" value="Edit employee details" />
+  </form>
+  <br><br>
+  <!-- Hyperlink for view employees -->
+  <a href="viewEmployee.html">View Employees</a>
+
+  <!-- Script for editing the employee details -->
+  <script type="module">
+    // Importing function for updating details
+    import { editEmployee } from './script.js';
+
+    const editForm = document.getElementById("editForm");
+    if (editForm !== null) {
+      // Adding event listener for form
+      editForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let employeeName = document.getElementById("employeeName").value;
+        let employeeId = document.getElementById("employeeId").value;
+        let employeeDesignation = document.getElementById(
+          "employeeDesignation"
+        ).value;
+        let employeeAddress = document.getElementById("employeeAddress").value;
+        editEmployee(employeeId, employeeName, employeeAddress, employeeDesignation);
+      });
+    }
+  </script>
+</body>
+</html>

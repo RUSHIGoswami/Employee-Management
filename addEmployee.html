@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Employee</title>
+  <!-- Linking script with type module for import/export and using defer to run after DOM rendering -->
+  <script type="module" src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- Heading -->
+  <h1>Add Employee</h1>
+
+
+  <!-- Add employee form -->
+  <form action="" method="post" id="addEmployeeForm">
+
+    <!-- Input for employee name -->
+    <label for="employeeName">Employee Name: </label><br>
+    <input type="text" name="employeeName" id="employeeName" placeholder="enter employee name" required /><br><br>
+    
+    <!-- Input for employee id -->
+    <label for="employeeId">Employee id: </label><br>
+    <input type="text" name="employeeId" id="employeeId" placeholder="enter employee Id" required /><br><br>
+    
+    <!-- Input for employee designation -->
+    <label for="employeeDesignation">Employee designation: </label><br>
+    <input type="text" name="employeeDesignation" id="employeeDesignation" placeholder="enter employee designation"
+    required /><br><br>
+    
+    <!-- Input for employee Address -->
+    <label for="address">Employee address: </label><br>
+    <textarea name="address" id="employeeAddress" cols="25" rows="5" style="resize: none;"
+      placeholder="enter address of employee" required></textarea><br><br>
+
+      <!-- submit button -->
+    <input type="submit" value="Add employee" /><br><br>
+  </form>
+
+  <!-- hyperlink to view employess. -->
+  <a href="viewEmployee.html">View Employees</a>
+
+
+  <!-- Script for adding data  -->
+  <script type="module">
+    // Importing add function from class file
+    import { addEmployee } from './script.js';
+
+    // Form element from DOM
+    const addForm = document.getElementById("addEmployeeForm");
+    if (addForm !== null) {
+
+      // Adding eventlistener
+      addForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let employeeName = document.getElementById("employeeName").value;
+        let employeeId = document.getElementById("employeeId").value;
+        let employeeDesignation = document.getElementById("employeeDesignation").value;
+        let employeeAddress = document.getElementById("employeeAddress").value;
+        addEmployee(employeeId, employeeName, employeeAddress, employeeDesignation);
+      });
+    }
+  </script>
+</body>
+
+</html>
